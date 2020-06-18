@@ -22,17 +22,12 @@ const usuarios = [
     }
 ];
 
-for (let i = 0; i < usuarios.length; i++){
-    const receita = usuarios[i].receitas.reduce((acc,cur) => {
-        return acc + cur
-    })
-    const despesa = usuarios[i].despesas.reduce((acc, cur) => {
-        return acc + cur
-    })
-    const total = receita - despesa
-    if (total > 0) {
-        console.log(`O usuário ${usuarios[i].nome} possui saldo POSITIVO de ${total.toFixed(2)}`)
-    } else {
-        console.log(`O usuário ${usuarios[i].nome} possui saldo NEGATIVO de ${total.toFixed(2)}`)
-    }
+const soma = (acc,cur) => acc + cur;
+
+for (usuario of usuarios){
+    const receita = usuario.receitas.reduce(soma);
+    const despesa = usuario.despesas.reduce(soma);
+    const total = receita - despesa;
+
+    console.log(`O usuário ${usuario.nome} possui saldo de ${total.toFixed(2)}`);
 }
